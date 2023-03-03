@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container h1 {
+    margin: 50px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.infos {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.infos select {
+    width: 120px;
+    height: 30px;
+    margin-right: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+.infos input {
+    width: 120px;
+    height: 30px;
+    margin: 2px;
+    padding-left: 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.infos button {
+    width: 120px;
+    height: 30px;
+    background-color: green;
+    color: #FFF;
+    border: none;
+}
+
+.display ul {
+    display: flex;
+    margin: 22px 0;
+}
+
+.display li {
+    list-style: none;
+    margin: 0 12px;
+}
+
+table {
+    margin-top: 22px;
+}
+
+table tr th {
+    background-color: #DDD;
+    width: 120px;
+    height: 30px;
+}
+
+table tr td {
+    background-color: #DDD;
+    width: 120px;
+    height: 30px;
+    text-align: center;
 }
