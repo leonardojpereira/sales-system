@@ -9,7 +9,6 @@ export default function App() {
   const [price, setPrice] = useState('');
   const [sale, setSale] = useState([]);
   const [isFieldCompleted, setIsFieldCompleted] = useState(true);
-  const [idEdit, setIdEdit] = useState(null);
 
   function formatDate(date) {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -21,7 +20,8 @@ export default function App() {
     return time.toLocaleTimeString('pt-BR', options);
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if(!employee || !product || !price) {
       setIsFieldCompleted(false);
       return;
@@ -49,49 +49,16 @@ export default function App() {
 
 
   const handleDelete = (id) => {
-    const newSaleList = sale.filter((sale) => sale.id !== id);
-    setSale(newSaleList);
+    const newSaleAfterDelete = [...sale];
+    newSaleAfterDelete.splice(id, 1);
+    setSale(newSaleAfterDelete);
   }
-
-  const handleEdit = (id) => {
-    const selectedSale = sale.find((sale) => sale.id === id);
-    setEmployee(selectedSale.employee);
-    setProduct(selectedSale.product);
-    setEmployee(selectedSale.employee);
-    setIdEdit(id);
-  }
-
-  const handleUpdate = (e) => {
-    if (!employee || !product || !price) {
-      alert('Todos os campos precisam ser preenchidos!');
-      return;
-    }
-    const updatedSales = sale.map((sale) => {
-      if (sale.id === idEdit) {
-        return {
-          ...sale,
-          employee,
-          product,
-          price,
-        };
-      } else {
-        return sale;
-      }
-    });
-    setSale(updatedSales);
-    setEmployee('');
-    setProduct('');
-    setPrice('');
-    setIdEdit(null);
-  }
-
-
 
 
   return (
     <div className="container">
         <h1>Sistema de vendas</h1>
-        <div className="infos">
+        <form onSubmit={handleSubmit} className="infos">
           <select value={employee} onChange={(e) => setEmployee(e.target.value)}>
             <option></option>
             <option>Funcionario 01</option>
@@ -102,11 +69,11 @@ export default function App() {
           </select>
           <input value={product} onChange={(e) => setProduct(e.target.value)} placeholder="Produto" type="name"/>
           <input value={price} onChange={(e) => setPrice(e.target.value)}  placeholder="R$ 0,00" type="number"/>
-          <button onClick={idEdit !== null ? handleUpdate : handleSubmit}>Confirmar</button> <br></br>
+          <button type="submit">Confirmar</button> <br></br>
           {isFieldCompleted === false && (
            <p style={{ color: "red" }}>Todos os campos devem ser preenchidos.</p>
            )}
-        </div>
+        </form>
 
         <div className='display'>
         <table>
@@ -130,7 +97,7 @@ export default function App() {
                <td>{sale.price}</td>
                <td>{sale.time}</td>
                <td>{sale.date}</td>
-               <td><button onClick={handleEdit}>✐</button></td>
+               <td><button>✐</button></td>
                <td><button onClick={handleDelete}>🗑</button></td>
             </tr>
           </table>
