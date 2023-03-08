@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './app.css'; 
 import shortid from 'shortid';
-
+import logo from './img/logo.png';
+import { FaTrashAlt } from 'react-icons/fa';
 
 export default function App() {
   const [employee, setEmployee] = useState('');
@@ -57,51 +58,50 @@ export default function App() {
 
   return (
     <div className="container">
-        <h1>Sistema de vendas</h1>
+      <div className='logo-container'>
+            <img className='logo' src={logo} alt="logo"/>
+           <h1>Sistema de vendas</h1>
+      </div>
+    
         <form onSubmit={handleSubmit} className="infos">
-          <select value={employee} onChange={(e) => setEmployee(e.target.value)}>
-            <option></option>
-            <option>Funcionario 01</option>
-            <option>Funcionario 02</option>
-            <option>Funcionario 03</option>
-            <option>Funcionario 04</option>
-            <option>Funcionario 05</option>
-          </select>
-          <input value={product} onChange={(e) => setProduct(e.target.value)} placeholder="Produto" type="name"/>
-          <input value={price} onChange={(e) => setPrice(e.target.value)}  placeholder="R$ 0,00" type="number"/>
-          <button type="submit">Confirmar</button> <br></br>
-          {isFieldCompleted === false && (
+            <input placeholder='Funcionário' value={employee} onChange={(e) => setEmployee(e.target.value)}/>
+            <input value={product} onChange={(e) => setProduct(e.target.value)} placeholder="Produto" type="name"/>
+            <input value={price} onChange={(e) => setPrice(e.target.value)}  placeholder="R$ 0,00" type="number"/>
+            <button type="submit">Confirmar</button>
+        </form>
+        <div className='error-message'>
+         {isFieldCompleted === false && (
            <p style={{ color: "red" }}>Todos os campos devem ser preenchidos.</p>
            )}
-        </form>
+         </div>
 
         <div className='display'>
         <table>
-            <tr>
+          <thead>
+          <tr>
               <th>ID</th>
               <th>Funcionário</th>
               <th>Produto</th>
               <th>Preço</th>
-              <th>Horário</th>
               <th>Data</th>
-              <th>Editar</th>
+              <th>Horário</th>
               <th>Excluir</th>
             </tr>
-          </table>
-          {sale.map((sale) => (
-            <table>
+          </thead>
+           <tbody>
+           {sale.map((sale) => (
             <tr key={sale.id}>
                <td>{sale.id}</td>
                <td>{sale.employee}</td>
                <td>{sale.product}</td>
                <td>{sale.price}</td>
-               <td>{sale.time}</td>
                <td>{sale.date}</td>
-               <td><button>✐</button></td>
-               <td><button onClick={handleDelete}>🗑</button></td>
+               <td>{sale.time}</td>
+               <td><FaTrashAlt className='icon-delete' onClick={handleDelete}/></td>
             </tr>
-          </table>
           ))}
+           </tbody>
+           </table>
         </div>
     </div>
   )
