@@ -1,8 +1,24 @@
 import { useState } from 'react';
-import './app.css'; 
+import './style'; 
 import shortid from 'shortid';
-import logo from './img/logo.png';
+
 import { FaTrashAlt } from 'react-icons/fa';
+import Logo from './components/Logo';
+import { Container, 
+  SaleForm,  
+  InputInfoSale, 
+  ButtonSubmit,
+  ErrorContainer, 
+  ErrorMessage, 
+  DisplaySale, 
+  SalesTable, 
+  TableHeader, 
+  GridItemTitle,
+  TableBody,
+  GridItem,
+  IconDelete
+} from './style';
+
 
 export default function App() {
   const [employee, setEmployee] = useState('');
@@ -57,52 +73,48 @@ export default function App() {
 
 
   return (
-    <div className="container">
-      <div className='logo-container'>
-            <img className='logo' src={logo} alt="logo"/>
-           <h1>Sistema de vendas</h1>
-      </div>
-    
-        <form onSubmit={handleSubmit} className="infos">
-            <input placeholder='Funcionário' value={employee} onChange={(e) => setEmployee(e.target.value)}/>
-            <input value={product} onChange={(e) => setProduct(e.target.value)} placeholder="Produto" type="name"/>
-            <input value={price} onChange={(e) => setPrice(e.target.value)}  placeholder="R$ 0,00" type="number"/>
-            <button type="submit">Confirmar</button>
-        </form>
-        <div className='error-message'>
+    <Container>
+      <Logo/>
+        <SaleForm onSubmit={handleSubmit}>
+            <InputInfoSale placeholder='Funcionário' value={employee} onChange={(e) => setEmployee(e.target.value)}/>
+            <InputInfoSale value={product} onChange={(e) => setProduct(e.target.value)} placeholder="Produto" type="name"/>
+            <InputInfoSale value={price} onChange={(e) => setPrice(e.target.value)}  placeholder="R$ 0,00" type="number"/>
+            <ButtonSubmit type="submit">Confirmar</ButtonSubmit>
+        </SaleForm>
+        <ErrorContainer>
          {isFieldCompleted === false && (
-           <p style={{ color: "red" }}>Todos os campos devem ser preenchidos.</p>
+           <ErrorMessage>Todos os campos devem ser preenchidos.</ErrorMessage>
            )}
-         </div>
+         </ErrorContainer>
 
-        <div className='display'>
-        <table>
-          <thead>
+      <DisplaySale>
+        <SalesTable>
+          <TableHeader>
           <tr>
-              <th>ID</th>
-              <th>Funcionário</th>
-              <th>Produto</th>
-              <th>Preço</th>
-              <th>Data</th>
-              <th>Horário</th>
-              <th>Excluir</th>
+              <GridItemTitle>ID</GridItemTitle>
+              <GridItemTitle>Funcionário</GridItemTitle>
+              <GridItemTitle>Produto</GridItemTitle>
+              <GridItemTitle>Preço</GridItemTitle>
+              <GridItemTitle>Data</GridItemTitle>
+              <GridItemTitle>Horário</GridItemTitle>
+              <GridItemTitle>Excluir</GridItemTitle>
             </tr>
-          </thead>
-           <tbody>
+          </TableHeader>
+           <TableBody>
            {sale.map((sale) => (
             <tr key={sale.id}>
-               <td>{sale.id}</td>
-               <td>{sale.employee}</td>
-               <td>{sale.product}</td>
-               <td>{sale.price}</td>
-               <td>{sale.date}</td>
-               <td>{sale.time}</td>
-               <td><FaTrashAlt className='icon-delete' onClick={handleDelete}/></td>
+               <GridItem>{sale.id}</GridItem>
+               <GridItem>{sale.employee}</GridItem>
+               <GridItem>{sale.product}</GridItem>
+               <GridItem>{sale.price}</GridItem>
+               <GridItem>{sale.date}</GridItem>
+               <GridItem>{sale.time}</GridItem>
+               <GridItem><IconDelete><FaTrashAlt onClick={handleDelete}/></IconDelete></GridItem>
             </tr>
           ))}
-           </tbody>
-           </table>
-        </div>
-    </div>
+           </TableBody>
+          </SalesTable>
+        </DisplaySale>
+    </Container>
   )
 }
