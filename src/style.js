@@ -85,8 +85,21 @@ width: 100%;
     font-size: 14px;
 `;
 
+export const IconEdit = styled.span`
+color: green;
+font-size: 16px;
+cursor: pointer;
+`;
+
+export const IconCancelEdit = styled.span`
+color: rgb(190, 67, 67);
+font-size: 16px;
+cursor: pointer;
+`
+
 export const IconDelete = styled.span`
 color: rgb(190, 67, 67);
 cursor: pointer;
+font-size: 14px;
 `;
 
