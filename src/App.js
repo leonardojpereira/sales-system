@@ -130,26 +130,26 @@ export default function App() {
         {editingId !== null ? (
           <>
             <InputInfoSale
-              style={{ borderBottom: "solid 2px green" }}
+              style={{ borderBottom: "solid 2px #0CC0DF" }}
               placeholder="Funcionário"
               value={employee}
               onChange={(e) => setEmployee(e.target.value)}
             />
             <InputInfoSale
-              style={{ borderBottom: "solid 2px green" }}
+              style={{ borderBottom: "solid 2px #0CC0DF" }}
               value={product}
               onChange={(e) => setProduct(e.target.value)}
               placeholder="Produto"
               type="name"
             />
             <InputInfoSale
-              style={{ borderBottom: "solid 2px green" }}
+              style={{ borderBottom: "solid 2px #0CC0DF" }}
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="R$ 0,00"
               type="number"
             />
-            <ButtonSubmit style={{ backgroundColor: "green" }} type="submit">
+            <ButtonSubmit style={{ backgroundColor: "#0CC0DF" }} type="submit">
               Salvar
             </ButtonSubmit>
           </>

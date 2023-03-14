@@ -17,6 +17,6 @@ export const LogoImg = styled.img`
 
 export const Title = styled.h1`
     margin-top: 12px;
-    color: #0CC0DF;
+    color: #FF7917;
     text-shadow: #2e2e2e 3px 3px 3px;
 `;

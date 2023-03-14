@@ -20,7 +20,7 @@ export const InputInfoSale = styled.input`
     height: 30px;
     padding-left: 4px;
     border: none;
-    border-bottom: solid 2px #0CC0DF;
+    border-bottom: solid 2px #FF7917;
     outline: none;
     margin: 0 22px;
 `
@@ -28,15 +28,17 @@ export const InputInfoSale = styled.input`
 export const ButtonSubmit = styled.button`
 width: 120px;
     height: 30px;
-    background-color: #12b0cc;
+    background-color: #FF7917;
     border-radius: 4px;
     color: #FFF;
     border: none;
     cursor: pointer;
     transition: ease 0.3s;
+
     &:hover {
-        background-color: #0CC0DF;
+      opacity: 0.8;
     }
+   
 `
 
 export const ErrorContainer = styled.div``;
@@ -53,24 +55,36 @@ export const DisplaySale = styled.div`
 
 export const SalesTable = styled.table`
 width: 98%;
-background-color: #fff;
 padding: 20px;
 box-shadow: 0px 0px 5px #ccc;
 border-radius: 5px;
 max-width: 1120px;
 margin: 20px auto;
+border-spacing: 0; 
+border-collapse: collapse;
+border-top-left-radius: 16px;
 `
 
 export const TableHeader = styled.thead`
 width: 100%;
+
 `
 
 export const GridItemTitle = styled.th`
-color: #000;
+color: #FFF;
 width: 100%;
 min-width: 100px;
-height: 30px;
+height: 60px;
 padding: 0 22px;
+background-color: #393634;
+&:first-child {
+    border-top-left-radius: 8px;
+}
+&:last-child {
+    border-top-right-radius: 8px;
+}
+
+
 `
 
 export const TableBody = styled.tbody``;
@@ -83,10 +97,14 @@ width: 100%;
     padding: 12px 0;
     word-break: break-all;
     font-size: 14px;
+    &:last-child {
+    border-bottom-left-radius: 8px;
+}
+
 `;
 
 export const IconEdit = styled.span`
-color: green;
+color: #0CC0DF;
 font-size: 16px;
 cursor: pointer;
 `;
