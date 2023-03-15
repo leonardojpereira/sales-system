@@ -4,17 +4,15 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import Logo from "./components/Logo";
+import Error from "./components/Error";
+import TableHeaderSale from "./components/TableHeaderSale";
 import {
   Container,
   SaleForm,
   InputInfoSale,
   ButtonSubmit,
-  ErrorContainer,
-  ErrorMessage,
   DisplaySale,
   SalesTable,
-  TableHeader,
-  GridItemTitle,
   TableBody,
   GridItem,
   IconEdit,
@@ -176,26 +174,13 @@ export default function App() {
           </>
         )}
       </SaleForm>
-      <ErrorContainer>
-        {isFieldCompleted === false && (
-          <ErrorMessage>Todos os campos devem ser preenchidos.</ErrorMessage>
+        {!isFieldCompleted && (
+         <Error message="Todos os campos precisam ser preenchidos."/>
         )}
-      </ErrorContainer>
 
       <DisplaySale>
         <SalesTable>
-          <TableHeader>
-            <tr>
-              <GridItemTitle>ID</GridItemTitle>
-              <GridItemTitle>Funcionário</GridItemTitle>
-              <GridItemTitle>Produto</GridItemTitle>
-              <GridItemTitle>Preço</GridItemTitle>
-              <GridItemTitle>Data</GridItemTitle>
-              <GridItemTitle>Horário</GridItemTitle>
-              <GridItemTitle>Editar</GridItemTitle>
-              <GridItemTitle>Excluir</GridItemTitle>
-            </tr>
-          </TableHeader>
+         <TableHeaderSale/>
           <TableBody>
             {sale.map((sale) => (
               <tr key={sale.id}>
