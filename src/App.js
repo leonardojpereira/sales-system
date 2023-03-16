@@ -75,7 +75,7 @@ export default function App() {
     const saleToEdit = sale.find((sale) => sale.id === id);
     setEmployee(saleToEdit.employee);
     setProduct(saleToEdit.product);
-    setPrice(parseFloat(saleToEdit.price.replace("R$", "").replace(".", ",")));
+    setPrice(saleToEdit.price.replace("R$", "").replace("", ""));
     setEditingId(id);
     setSelectedSaleId(id);
   };

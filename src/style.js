@@ -72,6 +72,12 @@ export const TableBody = styled.tbody`
 `;
 
 export const Tr = styled.tr`
+&:nth-child(even) {
+    background-color: rgb(239 239 239);
+}
+&:nth-child(odd) {
+    background-color: #fff;
+}
   @media (max-width: 830px) {
     display: block;
     width: 100%;
