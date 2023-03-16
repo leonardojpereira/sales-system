@@ -2,16 +2,18 @@ import styled from 'styled-components';
 
 export const TableHeader = styled.thead`
 width: 100%;
+@media (max-width: 830px) {
+    display: none;
+}
 
 `
 
 export const GridItemTitle = styled.th`
-color: #FFF;
-width: 100%;
-min-width: 100px;
-height: 60px;
-padding: 0 22px;
-background-color: #393634;
+padding: 12px 15px;
+  text-align: center;
+  font-size: 16px;
+  background-color: rgb(57 54 52);
+  color: #ffffff;
 &:first-child {
     border-top-left-radius: 8px;
 }

@@ -14,6 +14,7 @@ import {
   DisplaySale,
   SalesTable,
   TableBody,
+  Tr,
   GridItem,
   IconEdit,
   IconCancelEdit,
@@ -183,14 +184,14 @@ export default function App() {
          <TableHeaderSale/>
           <TableBody>
             {sale.map((sale) => (
-              <tr key={sale.id}>
-                <GridItem>{sale.id}</GridItem>
-                <GridItem>{sale.employee}</GridItem>
-                <GridItem>{sale.product}</GridItem>
-                <GridItem>{sale.price}</GridItem>
-                <GridItem>{sale.date}</GridItem>
-                <GridItem>{sale.time}</GridItem>
-                <GridItem>
+              <Tr key={sale.id}>
+                <GridItem data-label='ID'>{sale.id}</GridItem>
+                <GridItem data-label='Funcionário'>{sale.employee}</GridItem>
+                <GridItem data-label='Produto'>{sale.product}</GridItem>
+                <GridItem data-label='Preço'>{sale.price}</GridItem>
+                <GridItem data-label='Data'>{sale.date}</GridItem>
+                <GridItem data-label='Horário'>{sale.time}</GridItem>
+                <GridItem data-label='Editar'>
                   {sale.id === selectedSaleId && editingId !== null ? (
                     <IconCancelEdit>
                       <MdCancel onClick={handleCancelEdit}></MdCancel>
@@ -201,12 +202,12 @@ export default function App() {
                     </IconEdit>
                   )}
                 </GridItem>
-                <GridItem>
+                <GridItem data-label='Excluir'>
                   <IconDelete>
                     <FaTrashAlt onClick={() => handleDelete(sale.id)} />
                   </IconDelete>
                 </GridItem>
-              </tr>
+              </Tr>
             ))}
           </TableBody>
         </SalesTable>
