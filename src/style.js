@@ -54,15 +54,13 @@ export const DisplaySale = styled.div`
 `;
 
 export const SalesTable = styled.table`
-width: 98%;
-padding: 20px;
-box-shadow: 0px 0px 5px #ccc;
-border-radius: 5px;
-max-width: 1120px;
-margin: 20px auto;
-border-spacing: 0; 
-border-collapse: collapse;
-border-top-left-radius: 16px;
+ border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin-top: 40px;
+  max-width: 1120px; 
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
 `
 
 
@@ -76,6 +74,7 @@ width: 100%;
     padding: 12px 0;
     word-break: break-all;
     font-size: 14px;
+    border-bottom: solid 1px #ddd;
     &:last-child {
     border-bottom-left-radius: 8px;
 }
