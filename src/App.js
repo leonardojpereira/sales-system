@@ -1,25 +1,10 @@
 import { useState } from "react";
-import "./style";
-import { FaTrashAlt } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
+import "./GlobalStyles";
+import { Container, GlobalStyle } from "./GlobalStyles";
 import Logo from "./components/Logo";
-import Error from "./components/Error";
-import TableHeaderSale from "./components/TableHeaderSale";
-import {
-  Container,
-  SaleForm,
-  InputInfoSale,
-  ButtonSubmit,
-  DisplaySale,
-  SalesTable,
-  TableBody,
-  Tr,
-  GridItem,
-  IconEdit,
-  IconCancelEdit,
-  IconDelete,
-} from "./style";
+import Form from "./components/Form";
+import Error from "./components/ErrorMessage";
+import Table from "./components/Table";
 
 export default function App() {
   const [employee, setEmployee] = useState("");
@@ -60,6 +45,7 @@ export default function App() {
         style: "currency",
         currency: "BRL",
       }),
+      originalPrice: price,
       date: formatDate(now),
       time: formatTime(now),
     };
@@ -75,7 +61,7 @@ export default function App() {
     const saleToEdit = sale.find((sale) => sale.id === id);
     setEmployee(saleToEdit.employee);
     setProduct(saleToEdit.product);
-    setPrice(saleToEdit.price.replace("R$", "").replace("", ""));
+    setPrice(saleToEdit.originalPrice);
     setEditingId(id);
     setSelectedSaleId(id);
   };
@@ -102,6 +88,7 @@ export default function App() {
         style: "currency",
         currency: "BRL",
       }),
+      originalPrice: price,
       date: formatDate(now),
       time: formatTime(now),
     };
@@ -123,95 +110,33 @@ export default function App() {
   };
 
   return (
-    <Container>
-      <Logo />
-      <SaleForm onSubmit={editingId !== null ? handleSaveEdit : handleSubmit}>
-        {editingId !== null ? (
-          <>
-            <InputInfoSale
-              style={{ borderBottom: "solid 2px #0CC0DF" }}
-              placeholder="Funcionário"
-              value={employee}
-              onChange={(e) => setEmployee(e.target.value)}
-            />
-            <InputInfoSale
-              style={{ borderBottom: "solid 2px #0CC0DF" }}
-              value={product}
-              onChange={(e) => setProduct(e.target.value)}
-              placeholder="Produto"
-              type="name"
-            />
-            <InputInfoSale
-              style={{ borderBottom: "solid 2px #0CC0DF" }}
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="R$ 0,00"
-              type="number"
-            />
-            <ButtonSubmit style={{ backgroundColor: "#0CC0DF" }} type="submit">
-              Salvar
-            </ButtonSubmit>
-          </>
-        ) : (
-          <>
-            <InputInfoSale
-              placeholder="Funcionário"
-              value={employee}
-              onChange={(e) => setEmployee(e.target.value)}
-            />
-            <InputInfoSale
-              value={product}
-              onChange={(e) => setProduct(e.target.value)}
-              placeholder="Produto"
-              type="name"
-            />
-            <InputInfoSale
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="R$ 0,00"
-              type="number"
-            />
-            <ButtonSubmit type="submit">Confirmar</ButtonSubmit>
-          </>
-        )}
-      </SaleForm>
+    <>
+      <GlobalStyle />
+      <Container>
+        <Logo />
+        <Form editingId={editingId}
+          handleSaveEdit={handleSaveEdit}
+          handleSubmit={handleSubmit}
+          handleCancelEdit={handleCancelEdit}
+          employee={employee}
+          product={product}
+          price={price}
+          setEmployee={setEmployee}
+          setProduct={setProduct}
+          setPrice={setPrice}
+        />
         {!isFieldCompleted && (
-         <Error message="Todos os campos precisam ser preenchidos."/>
+          <Error message={"Todos os campos precisam ser preenchidos."} />
         )}
+        <Table sale={sale}
+          selectedSaleId={selectedSaleId}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          editingId={editingId}
+          handleCancelEdit={handleCancelEdit}>
+        </Table>
+      </Container>
+    </>
 
-      <DisplaySale>
-        <SalesTable>
-         <TableHeaderSale/>
-          <TableBody>
-            {sale.map((sale) => (
-              <Tr key={sale.id}>
-                <GridItem data-label='ID'>{sale.id}</GridItem>
-                <GridItem data-label='Funcionário'>{sale.employee}</GridItem>
-                <GridItem data-label='Produto'>{sale.product}</GridItem>
-                <GridItem data-label='Preço'>{sale.price}</GridItem>
-                <GridItem data-label='Data'>{sale.date}</GridItem>
-                <GridItem data-label='Horário'>{sale.time}</GridItem>
-                <GridItem data-label='Editar'>
-                  {sale.id === selectedSaleId && editingId !== null ? (
-                    <IconCancelEdit>
-                      <MdCancel onClick={handleCancelEdit}></MdCancel>
-                    </IconCancelEdit>
-                  ) : (
-                    <IconEdit>
-                      <FaEdit onClick={() => handleEdit(sale.id)}></FaEdit>
-                    </IconEdit>
-                  )}
-                </GridItem>
-                <GridItem data-label='Excluir'>
-                  <IconDelete>
-                    <FaTrashAlt onClick={() => handleDelete(sale.id)} />
-                  </IconDelete>
-                </GridItem>
-              </Tr>
-            ))}
-          </TableBody>
-        </SalesTable>
-      </DisplaySale>
-    </Container>
   );
 }

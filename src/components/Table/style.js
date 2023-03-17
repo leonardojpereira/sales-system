@@ -1,61 +1,4 @@
-import styled from "styled-components";
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 0 22px;
-`;
-
-export const SaleForm = styled.form`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 830px) {
-    display: contents;
-  }
-`;
-
-export const InputInfoSale = styled.input`
-  width: 120px;
-  height: 30px;
-  padding-left: 4px;
-  border: none;
-  border-bottom: solid 2px #ff7917;
-  outline: none;
-  margin: 0 22px;
-  @media (max-width: 830px) {
-    width: 100%;
-    margin: 0 0 22px 0;
-  }
-`;
-
-export const ButtonSubmit = styled.button`
-  width: 120px;
-  height: 30px;
-  background-color: #ff7917;
-  border-radius: 4px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: ease 0.3s;
-  &:hover {
-    opacity: 0.8;
-  }
-  @media (max-width: 830px) {
-    width: 100%;
-  }
-`;
-
-export const ErrorContainer = styled.div``;
-
-export const ErrorMessage = styled.p`
-  margin-top: 22px;
-  color: red;
-`;
-
-export const DisplaySale = styled.div``;
+import styled from 'styled-components';
 
 export const SalesTable = styled.table`
   width: 100%;
@@ -114,6 +57,7 @@ export const GridItem = styled.td`
     }
   }
 `;
+
 
 export const IconEdit = styled.span`
   color: #0cc0df;
