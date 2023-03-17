@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-import styled from 'styled-components';
- 
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Poppins', Sans-Serif;
   }
 `;
- 
 
 export const Container = styled.div`
   display: flex;
@@ -19,5 +18,3 @@ export const Container = styled.div`
 `;
 
 export const DisplaySale = styled.div``;
-
-

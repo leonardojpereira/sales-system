@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SalesTable = styled.table`
   width: 100%;
@@ -15,12 +15,12 @@ export const TableBody = styled.tbody`
 `;
 
 export const Tr = styled.tr`
-&:nth-child(even) {
+  &:nth-child(even) {
     background-color: rgb(239 239 239);
-}
-&:nth-child(odd) {
+  }
+  &:nth-child(odd) {
     background-color: #fff;
-}
+  }
   @media (max-width: 830px) {
     display: block;
     width: 100%;
@@ -34,8 +34,8 @@ export const GridItem = styled.td`
   text-align: center;
   font-size: 16px;
   nth-of-type(odd) {
-    background-color:#000;
-    }
+    background-color: #000;
+  }
   &:last-child {
     border-bottom-left-radius: 8px;
   }
@@ -57,7 +57,6 @@ export const GridItem = styled.td`
     }
   }
 `;
-
 
 export const IconEdit = styled.span`
   color: #0cc0df;

@@ -1,16 +1,20 @@
-import {
-  SaleForm,
-  InputInfoSale,
-  ButtonSubmit,
-} from "./style";
-
-
+import { SaleForm, InputInfoSale, ButtonSubmit } from "./style";
 
 export default function Form(props) {
-  const { editingId, handleSaveEdit, handleSubmit , employee, product, price, setEmployee, setProduct, setPrice } = props;
+  const {
+    editingId,
+    handleSaveEdit,
+    handleSubmit,
+    employee,
+    product,
+    price,
+    setEmployee,
+    setProduct,
+    setPrice,
+  } = props;
 
-    return(
-      <SaleForm onSubmit={editingId !== null ? handleSaveEdit : handleSubmit}>
+  return (
+    <SaleForm onSubmit={editingId !== null ? handleSaveEdit : handleSubmit}>
       {editingId !== null ? (
         <>
           <InputInfoSale
@@ -32,6 +36,7 @@ export default function Form(props) {
             onChange={(e) => setPrice(e.target.value)}
             placeholder="R$ 0,00"
             type="number"
+            min="1"
           />
           <ButtonSubmit style={{ backgroundColor: "#0CC0DF" }} type="submit">
             Salvar
@@ -55,12 +60,11 @@ export default function Form(props) {
             onChange={(e) => setPrice(e.target.value)}
             placeholder="R$ 0,00"
             type="number"
+            min="1"
           />
           <ButtonSubmit type="submit">Confirmar</ButtonSubmit>
         </>
       )}
-     
     </SaleForm>
-    
-    )
+  );
 }

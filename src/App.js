@@ -5,6 +5,9 @@ import Logo from "./components/Logo";
 import Form from "./components/Form";
 import Error from "./components/ErrorMessage";
 import Table from "./components/Table";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   const [employee, setEmployee] = useState("");
@@ -55,6 +58,7 @@ export default function App() {
     setProduct("");
     setPrice("");
     setIsFieldCompleted(true);
+    toast.success("Venda adicionada com sucesso!");
   };
 
   const handleEdit = (id) => {
@@ -101,20 +105,25 @@ export default function App() {
     setPrice("");
     setEditingId(null);
     setIsFieldCompleted(true);
+
+    toast("Venda atualizada com sucesso!");
   };
 
   const handleDelete = (id) => {
     const newSales = sale.filter((sale) => sale.id !== id);
     setSale(newSales);
     setSelectedSaleId(id);
+    toast.info("Venda deletada com sucesso!");
   };
 
   return (
     <>
       <GlobalStyle />
+      <ToastContainer pauseOnHover={false} autoClose={1000} />
       <Container>
         <Logo />
-        <Form editingId={editingId}
+        <Form
+          editingId={editingId}
           handleSaveEdit={handleSaveEdit}
           handleSubmit={handleSubmit}
           handleCancelEdit={handleCancelEdit}
@@ -128,15 +137,15 @@ export default function App() {
         {!isFieldCompleted && (
           <Error message={"Todos os campos precisam ser preenchidos."} />
         )}
-        <Table sale={sale}
+        <Table
+          sale={sale}
           selectedSaleId={selectedSaleId}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
           editingId={editingId}
-          handleCancelEdit={handleCancelEdit}>
-        </Table>
+          handleCancelEdit={handleCancelEdit}
+        />
       </Container>
     </>
-
   );
 }
