@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./GlobalStyles";
 import { Container, GlobalStyle } from "./GlobalStyles";
 import Logo from "./components/Logo";
@@ -17,6 +17,20 @@ export default function App() {
   const [isFieldCompleted, setIsFieldCompleted] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [selectedSaleId, setSelectedSaleId] = useState(null);
+
+  useEffect(() => {
+    if(sale.length > 0) {
+      localStorage.setItem("sale", JSON.stringify(sale));
+    }
+  }, [sale]);
+
+  // Recupera as vendas salvas no Local Storage ao carregar o componente
+  useEffect(() => {
+    const savedSale = localStorage.getItem("sale");
+    if (savedSale) {
+      setSale(JSON.parse(savedSale));
+    }
+  }, []);
 
   const generateId = () => {
     const randomNumber = Math.floor(Math.random() * 10000);
@@ -62,6 +76,7 @@ export default function App() {
   };
 
   const handleEdit = (id) => {
+    console.log('uhuu');
     const saleToEdit = sale.find((sale) => sale.id === id);
     setEmployee(saleToEdit.employee);
     setProduct(saleToEdit.product);
