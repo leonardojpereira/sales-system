@@ -128,6 +128,7 @@ export default function App() {
     const newSales = sale.filter((sale) => sale.id !== id);
     setSale(newSales);
     setSelectedSaleId(id);
+    localStorage.setItem("sale", JSON.stringify(newSales));
     toast.info("Venda deletada com sucesso!");
   };
 
